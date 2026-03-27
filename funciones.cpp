@@ -122,8 +122,7 @@ int sumaPorBloques(char *cadena, int n) {
     return suma;
 }
 void sala_cine() {
-    int filas = 15, columnas = 20,
-        op;
+    int filas = 15, columnas = 20, op;
     char *sala = new char[filas * columnas];
 
     for (int i = 0; i < filas * columnas; i++)
@@ -222,32 +221,33 @@ void rectangulo_interseccion() {
     for (int i = 0; i < 4; i++)
         cin >> *(B + i);
 
-    // Limites de A
+
     int xA = *(A + 0);
     int yA = *(A + 1);
     int xA_fin = *(A + 0) + *(A + 2);
     int yA_fin = *(A + 1) + *(A + 3);
 
-    // Limites de B
     int xB = *(B + 0);
     int yB = *(B + 1);
     int xB_fin = *(B + 0) + *(B + 2);
     int yB_fin = *(B + 1) + *(B + 3);
 
-    // Calcular interseccion
     int xC = xA;
-    if (xB > xC) xC = xB;
+    if (xB > xC)
+        xC = xB;
 
     int yC = yA;
-    if (yB > yC) yC = yB;
+    if (yB > yC)
+        yC = yB;
 
     int xC_fin = xA_fin;
-    if (xB_fin < xC_fin) xC_fin = xB_fin;
+    if (xB_fin < xC_fin)
+        xC_fin = xB_fin;
 
     int yC_fin = yA_fin;
-    if (yB_fin < yC_fin) yC_fin = yB_fin;
+    if (yB_fin < yC_fin)
+        yC_fin = yB_fin;
 
-    // Ver si hay intersección
     if (xC < xC_fin && yC < yC_fin) {
         *(C + 0) = xC;
         *(C + 1) = yC;
@@ -260,7 +260,6 @@ void rectangulo_interseccion() {
         *(C + 3) = 0;
     }
 
-    // Mostrar resultado
     cout << "Rectangulo interseccion: { ";
     for (int i = 0; i < 4; i++)
         cout << *(C + i) << " ";
@@ -268,23 +267,19 @@ void rectangulo_interseccion() {
 }
 
 void numeros_amigables() {
-    int a;
-    int b;
-
-    cout << "Ingrese numero a: ";
-    cin >> a;
-    cout << "Ingrese numero b: ";
-    cin >> b;
+    int n;
+    cout << "Ingrese un numero: ";
+    cin >> n;
 
     int suma_total = 0;
 
-    for (int i = a; i <= b; i++) {
+    for (int i = 2; i < n; i++) {
 
         int suma1 = 0;
         int temp = i;
         int *ptr = &temp;
 
-        // suma divisores de i
+        // Suma divisores de i
         for (int k = 1; k < *ptr; k++) {
             if (*ptr % k == 0)
                 suma1 += k;
@@ -292,13 +287,13 @@ void numeros_amigables() {
 
         int j = suma1;
 
-        if (j != i && j >= a && j <= b) {
+        if (j != i && j < n) {
 
             int suma2 = 0;
             int temp2 = j;
             int *ptr2 = &temp2;
 
-            // suma divisores de j
+            // Suma divisores de j
             for (int k = 1; k < *ptr2; k++) {
                 if (*ptr2 % k == 0)
                     suma2 += k;
@@ -312,4 +307,3 @@ void numeros_amigables() {
 
     cout << "El resultado de la suma es: " << suma_total << endl;
 }
-
